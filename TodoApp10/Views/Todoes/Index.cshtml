@@ -8,8 +8,9 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a href="Create" class="btn btn-primary width-100 mr-2 mb-3"><i class="fas fa-angle-right"></i> 新規作成</a>
 </p>
+
 <table class="table">
     <tr>
         <th>
@@ -27,26 +28,27 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Summary)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Detail)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Limit)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Done)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Summary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Detail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Limit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Done)
+            </td>
+            <td>
+                <a href="@Url.Action("Details", new { id = item.Id })" class="btn btn-success botton_for_openmodal mb-8"><i class="fas fa-edit fa-fw"></i> 詳細</a>
+                <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-primary btn-edit"><i class="fas fa-chalkboard-teacher mr-1"></i> 編集</a>
+                <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-danger btn-remove"><i class="fas fa-trash-alt fa-fw"></i> 削除</a>
+            </td>
+        </tr>
+    }
 
 </table>
