@@ -22,14 +22,36 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+
 </head>
 <body>
-    <div class="container">
-        @if(Request.IsAuthenticated)
-        {
-            @Html.ActionLink("ログアウト","SignOut",new { Controller = "Login"})
-        }
-    </div>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-controller="Movies" asp-action="Index">Movie App</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+              
+                <div class="container">
+                    @if (Request.IsAuthenticated)
+                    {
+                        @Html.ActionLink("ログアウト", "SignOut", new { Controller = "Login" })
+                    }
+                </div>
+
+
+
+
+            </div>
+        </nav>
+    </header>
+
+    
     <div class="container">
         @RenderBody()
     </div>

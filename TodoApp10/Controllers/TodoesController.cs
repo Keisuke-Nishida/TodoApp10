@@ -4,9 +4,11 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using TodoApp10.Models;
+
 
 namespace TodoApp10.Controllers
 {
@@ -14,6 +16,8 @@ namespace TodoApp10.Controllers
     public class TodoesController : Controller
     {
         private TodoesContext db = new TodoesContext();
+
+      
 
         // GET: Todoes
         public ActionResult Index()
@@ -124,5 +128,19 @@ namespace TodoApp10.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public async Task<ActionResult> ShowModal(int id)
+        {
+            //何かしらの処理を記述
+            //今回はボタンから取得したIDに紐づくのユーザー情報を取得
+            var todoes = await db.Todoes.FirstOrDefaultAsync(m => m.Id == id);
+
+
+            //呼び出したいモダール用のViewを指定（①で作ったもの）
+            //渡したいデータは第二引数とする
+            return PartialView("_Modal", todoes);
+
+        }
+
     }
 }
